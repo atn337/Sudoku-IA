@@ -15,7 +15,7 @@ public class SudokuSolver {
 		if (solveBoard(board)) {
 			System.out.println("Resolvido com sucesso!");
 		} else {
-			System.out.println("Sem resolução :(");
+			System.out.println("Sem resolução para :(");
 		}
 
 		printBoard(board);
