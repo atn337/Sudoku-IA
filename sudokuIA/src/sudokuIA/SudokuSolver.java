@@ -1,5 +1,8 @@
 package sudokuIA;
 
+import java.time.Duration;
+import java.time.Instant;
+
 public class SudokuSolver {
 
 	private static final int GRID_SIZE = 9;
@@ -10,10 +13,12 @@ public class SudokuSolver {
 				{ 0, 0, 0, 0, 0, 2, 0, 6, 0 }, { 0, 4, 0, 0, 8, 1, 5, 9, 0 }, { 0, 0, 9, 7, 5, 0, 0, 0, 0 },
 				{ 9, 0, 0, 8, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 2, 0, 0, 8, 0 }, { 0, 0, 5, 0, 0, 0, 0, 0, 3 } };
 
+		long tempoInicial = System.currentTimeMillis();
+
 		printBoard(board);
 
 		if (solveBoard(board)) {
-			System.out.println("Resolvido com sucesso!");
+			System.out.println("Resolvido com sucesso! em " + (tempoInicial*0.001)+" segundos");
 		} else {
 			System.out.println("Sem resolução para :(");
 		}
@@ -75,6 +80,7 @@ public class SudokuSolver {
 	}
 
 	private static boolean solveBoard(int[][] board) {
+		int c = 0;
 		for (int row = 0; row < GRID_SIZE; row++) {
 			for (int column = 0; column < GRID_SIZE; column++) {
 				if (board[row][column] == 0) {
@@ -83,6 +89,7 @@ public class SudokuSolver {
 							board[row][column] = numberToTry;
 
 							if (solveBoard(board)) {
+
 								return true;
 							} else {
 								board[row][column] = 0;
